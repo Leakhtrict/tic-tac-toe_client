@@ -13,13 +13,13 @@ function Home() {
     const [listOfTags, setListOfTags] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/games")
+        axios.get("https://tic-tac-toe-genis.herokuapp.com/games")
         .then((response) => {
             setListOfGames(response.data);
             setFilteredListOfGames(response.data);
         });
 
-        axios.get("http://localhost:3001/tags")
+        axios.get("https://tic-tac-toe-genis.herokuapp.com/tags")
         .then((response) => {
             response.data.map((value) => {
                 if(value.count > 0){
@@ -32,8 +32,8 @@ function Home() {
 
     const deleteGame = (game) => {
         const thisTags = game.tags.split(" ").slice(0, -1);
-        axios.post("http://localhost:3001/tags/removeTags", thisTags);
-        axios.delete(`http://localhost:3001/games/${game.id}`);
+        axios.post("https://tic-tac-toe-genis.herokuapp.com/tags/removeTags", thisTags);
+        axios.delete(`https://tic-tac-toe-genis.herokuapp.com/games/${game.id}`);
     };
 
     return(

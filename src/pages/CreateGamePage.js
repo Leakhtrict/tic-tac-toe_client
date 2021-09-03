@@ -16,7 +16,7 @@ function CreateGamePage() {
     const [listOfTags, setListOfTags] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/tags")
+        axios.get("https://tic-tac-toe-genis.herokuapp.com/tags")
         .then((response) => {
             const getTags = response.data;
             getTags.map((value) => {
@@ -32,7 +32,7 @@ function CreateGamePage() {
 
     const onSubmitData = () => {
         if(titleValue.length > 0 && titleValue.length < 16){
-            axios.post("http://localhost:3001/tags/addTags", selectedTags);
+            axios.post("https://tic-tac-toe-genis.herokuapp.com/tags/addTags", selectedTags);
             let tagsString = "";
             selectedTags.map((value) => {
                 tagsString += value.label + " ";
@@ -44,7 +44,7 @@ function CreateGamePage() {
                 createdBy: location.state.user,
             }
 
-            axios.post("http://localhost:3001/games/createGame", data)
+            axios.post("https://tic-tac-toe-genis.herokuapp.com/games/createGame", data)
             .then((response) => {
                 socket.emit("joinRoom", response.data.title);
                 history.push({

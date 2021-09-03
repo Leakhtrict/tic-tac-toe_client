@@ -7,7 +7,7 @@ import CreateGamePage from "./pages/CreateGamePage";
 import io from "socket.io-client";
 import { SocketContext } from "./helpers/SocketContext";
 
-let socket = io("http://localhost:3001");
+let socket = io("https://tic-tac-toe-genis.herokuapp.com");
 
 function App() {
   return (
