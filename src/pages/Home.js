@@ -3,16 +3,30 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Button, Grid } from "@material-ui/core";
 import { SocketContext } from "../helpers/SocketContext";
+import MainTagCloud from "../components/MainTagCloud";
 
 function Home() {
     let history = useHistory();
     const { socket } = useContext(SocketContext);
     const [listOfGames, setListOfGames] = useState([]);
+    const [filteredListOfGames, setFilteredListOfGames] = useState([]);
+    const [listOfTags, setListOfTags] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:3001/games")
         .then((response) => {
             setListOfGames(response.data);
+            setFilteredListOfGames(response.data);
+        });
+
+        axios.get("http://localhost:3001/tags")
+        .then((response) => {
+            response.data.map((value) => {
+                if(value.count > 0){
+                    setListOfTags(prevState => [...prevState, { value: value.tagName, count: value.count }]);
+                }
+                return value;
+            });
         });
     }, [])
 
@@ -24,13 +38,16 @@ function Home() {
 
     return(
         <div className="Home">
-            {(listOfGames.length > 0) &&
+            {listOfTags.length > 0 && 
+                <MainTagCloud data={listOfTags} listOfGames={listOfGames} setFilteredListOfGames={setFilteredListOfGames} />
+            }
+            {(filteredListOfGames.length > 0) &&
                 <>
                     <div className="textJoin">
                         JOIN A GAME
                     </div>
                     <div className="gamesBar">
-                        {listOfGames.map((value, key) => {
+                        {filteredListOfGames.map((value, key) => {
                             const thisTags = value.tags.split(" ").slice(0, -1);
                             return(
                                 <div key={key} className="gameDisplay" onClick={ async () => {

@@ -116,3 +116,29 @@ body{
   max-width: 320px;
   padding: 10px;
 }
+
+.tagDefault, .tagClicked{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+}
+
+.tagUnclicked{
+  padding: 5px;
+  border-radius: 10px;
+  background-color: rgb(233, 102, 102);
+  color: white;
+}
+
+.tagUnclicked:hover{
+  cursor: pointer;
+  color: white;
+  background-color: red;
+}
+
+.tagDefault:hover{
+  cursor: pointer;
+  color: white;
+  background-color: rgb(233, 102, 102);
+}
