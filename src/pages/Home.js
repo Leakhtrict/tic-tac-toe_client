@@ -52,14 +52,14 @@ function Home() {
                             return(
                                 <div key={key} className="gameDisplay" onClick={ async () => {
                                     await socket.emit("joinRoom", value.title);
-                                    socket.on("joined", () => {
+                                    socket.off("joined").on("joined", () => {
                                         deleteGame(value);
                                         history.push({
                                             pathname: `/game/${value.id}`,
                                             state: { isCreator: false, gameTitle: value.title }
                                         })
                                     });
-                                    socket.on("full", () => {
+                                    socket.off("full").on("full", () => {
                                         history.go(0);
                                     });
                                 }}>

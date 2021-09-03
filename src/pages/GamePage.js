@@ -19,19 +19,17 @@ function GamePage() {
     ]);
     
     socket.off("emitSendTurn").on("emitSendTurn", async (data) => {
-        if(id === data.id){
-            setMatrix(prevState => {
-                const tempMatrix = [...prevState];
-                tempMatrix[data.row][data.column] = location.state.isCreator ? "O" : "X";
-                return tempMatrix;
-            });
-            if(data.result){
-                await socket.emit("leaveRoom", location.state.gameTitle);
-                const temp = alert(data.result);
-                history.push("/");
-            } else{
-                setOnTurn(true);
-            }
+        setMatrix(prevState => {
+            const tempMatrix = [...prevState];
+            tempMatrix[data.row][data.column] = location.state.isCreator ? "O" : "X";
+            return tempMatrix;
+        });
+        if(data.result){
+            alert(data.result);
+            await socket.emit("leaveRoom", location.state.gameTitle);
+            history.push("/");
+        } else{
+            setOnTurn(true);
         }
     });
 
@@ -119,8 +117,8 @@ function GamePage() {
         setOnTurn(false);
         await socket.emit("sendTurn", data);
         if(result.length > 0){
+            alert(result);
             await socket.emit("leaveRoom", location.state.gameTitle);
-            const temp = alert(result);
             history.push("/");
         }
     };
