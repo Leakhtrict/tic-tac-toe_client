@@ -1,4 +1,118 @@
 .App {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
+  font-family: "Arial", "Helvetica", sans-serif;
+  /*background-image: url(https://res.cloudinary.com/genis-project/image/upload/v1630646196/maths_background_lbn4dc.jpg);*/
 }
 
+body{
+  margin: 0px;
+}
+
+#globalButton{
+  color: white;
+  background-color: red;
+}
+
+#globalButton:hover{
+  color: red;
+  background-color: transparent;
+}
+
+.Home, .CreateGamePage, .GamePage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameDisplay{
+  word-break: break-word;
+  width: 200px;
+  min-width: 200px;
+  height: auto;
+  margin: 8px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: white;
+}
+
+.gameDisplay header{
+  display: flex;
+  border-radius: 10px 10px 0px 0px;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: red;
+  padding: 5px;
+}
+
+.gameDisplay:hover{
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.733);
+  box-shadow: rgba(99, 99, 99, 0.459) 0px 2px 8px 0px;
+}
+
+.gamesBar{
+  width: calc(min(700px, 90vw));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.textJoin{
+  font-size: xx-large;
+  font-weight: 600;
+  margin-bottom: 8px;
+  margin-top: 100px;
+}
+
+.textOr{
+  font-size: xx-large;
+  font-weight: 600;
+  margin: 8px;
+}
+
+.GamePage, .CreateGamePage{
+  height: 90vh;
+}
+
+.tic-tac-toe-table{
+  background-color: white;
+  border: 2px double transparent;
+  border-collapse: collapse;
+}
+
+.GamePage #matrixCell{
+  height: 70px;
+  width: 70px;
+  padding: 5px;
+  border: 2px solid black;
+}
+
+.GamePage #matrixCellButton{
+  height: 100%;
+  width: 100%;
+  font-size: xx-large;
+}
+
+.CreateGamePage #inputTags{
+  width: 90vw;
+  max-width: 450px;
+  margin: 20px;
+}
+
+.CreateGamePage #inputTitle{
+  width: 90vw;
+  max-width: 320px;
+  padding: 10px;
+}
