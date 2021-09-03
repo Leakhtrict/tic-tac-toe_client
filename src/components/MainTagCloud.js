@@ -25,7 +25,6 @@ export default function MainTagCloud({data, listOfGames, setFilteredListOfGames}
                 disableRandomColor={true}
                 randomNumberGenerator={() => {return 0}}
                 onClick={(tag) => {
-                    console.log(tag);
                     filterList(tag.value);
                 }}
                 renderer={(tag) => {

@@ -49,7 +49,7 @@ function CreateGamePage() {
                 socket.emit("joinRoom", response.data.title);
                 history.push({
                     pathname: `/game/${response.data.id}`,
-                    state: { isCreator: true }
+                    state: { isCreator: true, gameTitle: response.data.title }
                 });
             });
         } else{

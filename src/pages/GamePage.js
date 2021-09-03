@@ -18,7 +18,7 @@ function GamePage() {
         [null, null, null],
     ]);
     
-    socket.off("emitSendTurn").on("emitSendTurn", (data) => {
+    socket.off("emitSendTurn").on("emitSendTurn", async (data) => {
         if(id === data.id){
             setMatrix(prevState => {
                 const tempMatrix = [...prevState];
@@ -26,7 +26,8 @@ function GamePage() {
                 return tempMatrix;
             });
             if(data.result){
-                alert(data.result);
+                await socket.emit("leaveRoom", location.state.gameTitle);
+                const temp = alert(data.result);
                 history.push("/");
             } else{
                 setOnTurn(true);
@@ -47,7 +48,7 @@ function GamePage() {
         }
     }, []);
 
-    const changeCell = (row, column) => {
+    const changeCell = async (row, column) => {
         const data = { 
             row: row,
             column: column,
@@ -116,9 +117,10 @@ function GamePage() {
             return tempMatrix;
         });
         setOnTurn(false);
-        socket.emit("sendTurn", data);
+        await socket.emit("sendTurn", data);
         if(result.length > 0){
-            alert(result);
+            await socket.emit("leaveRoom", location.state.gameTitle);
+            const temp = alert(result);
             history.push("/");
         }
     };

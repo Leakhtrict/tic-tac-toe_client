@@ -56,7 +56,7 @@ function Home() {
                                         deleteGame(value);
                                         history.push({
                                             pathname: `/game/${value.id}`,
-                                            state: { isCreator: false }
+                                            state: { isCreator: false, gameTitle: value.title }
                                         })
                                     });
                                     socket.on("full", () => {
